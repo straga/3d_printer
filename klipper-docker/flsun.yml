@@ -1,0 +1,33 @@
+version: '3'
+services:
+
+  klipper:
+    build:
+      context: .
+      dockerfile: ./klipper/Dockerfile
+    # restart: always
+    volumes:
+      - '/opt/printer/flsun:/opt/printer'
+      - '/opt/printer/flsun/cfg:/opt/printer/cfg'
+      - '/tmp:/tmp'
+    privileged: true
+    devices:
+      - '/dev:/dev'
+     
+
+  moonraker:
+    build:
+      context: .
+      dockerfile: ./moonraker/Dockerfile
+    # restart: always
+    volumes:
+      - '/opt/printer/flsun:/opt/printer'
+      - '/tmp:/tmp'
+    ports:
+      - 5125:5125
+    depends_on:
+      - klipper
+
+
+
+

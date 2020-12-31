@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  fluidd:
+    build:
+      context: .
+      dockerfile: ./ui/Dockerfile
+    restart: always
+    volumes:
+      - '/opt/printer/flsun:/opt/printer'
+    ports:
+      - 8100:8080
+
+
+
